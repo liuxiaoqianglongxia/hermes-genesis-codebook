@@ -1,0 +1,7 @@
+version: 1
+projects:
+  - id: sample-project
+    name: 示例项目
+    path: ~/projects/sample-project
+    state_file: ~/projects/sample-project/STATE.md
+    progress_file: ~/projects/sample-project/docs/progress.md

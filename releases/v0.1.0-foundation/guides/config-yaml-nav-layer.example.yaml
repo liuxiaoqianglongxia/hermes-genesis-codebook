@@ -1,0 +1,32 @@
+# config.yaml 导航层示例
+# 对应 EP-001：刚下载 Hermes 那天，我先干的不是调模型，而是把规矩写进配置文件
+#
+# 这段配置的作用：
+# 每次新会话启动时，自动加载术语表、目录结构和项目清单。
+# 不用一遍遍告诉 AI 项目在哪。
+#
+# ⚠️ 这不是完整配置，只展示 system_prompt 中的导航层部分。
+
+agent:
+  system_prompt: |
+    # 导航层
+
+    你启动前需要按以下顺序读取上下文：
+
+    1. 先读 ~/knowledge/README.md —— 知识库总入口
+    2. 再读 ~/knowledge/standards/01-terminology.md —— 术语与总纲
+    3. 再读 ~/knowledge/standards/02-structure.md —— 目录结构
+    4. 再读 ~/projects/registry.yaml —— 项目清单
+    5. 然后读具体项目的 STATE.md —— 单项目事实源
+
+    # 类型分流
+
+    - 通用规范 → ~/knowledge/standards/
+    - 团队记忆 → ~/knowledge/teams/
+    - 项目事实 → ~/projects/registry.yaml + 项目 STATE.md
+
+    # 核心规则
+
+    - README 是指路层，不是事实源
+    - 事实层（STATE.md / registry.yaml / 记忆文件）是当前真相
+    - 展示层（飞书文档 / Dashboard）不能反向覆盖事实层

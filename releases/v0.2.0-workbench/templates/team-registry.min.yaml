@@ -1,0 +1,33 @@
+version: 1
+mode: single-work-instance
+source_of_truth: local-team-registry
+
+aliases:
+  team_ids:
+    old-demo-team: demo-team
+
+teams:
+  - id: demo-team
+    name: 示例团队
+    status: active
+    kind: development
+    related_projects:
+      - demo-project
+    facts_boundary:
+      read:
+        - ~/knowledge/standards
+        - ~/knowledge/teams/demo-team
+        - ~/projects/registry.yaml
+        - ~/projects/demo-project/STATE.md
+        - ~/projects/demo-project/docs/progress.md
+      write:
+        - ~/projects/demo-project
+        - ~/knowledge/teams/demo-team
+    role_memory_map:
+      project-manager: project-manager
+      developer: developer
+      tester: tester
+    routing:
+      keywords: [开发, 项目, 测试]
+      default_skill: demo-team-workflow
+      group_topic_skill: team-boss
